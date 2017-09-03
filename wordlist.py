@@ -38,7 +38,7 @@ class __Param:
             self.__error_print('the count parameter has to be greater than 0')
         if self.min < 0:
             self.__error_print('the min parameter has to be greater or equal than 0')
-        if self.max != -1 or -1 < self.max < self.min:
+        if -1 < self.max < self.min:
             self.__error_print('the max parameter has to be greater than min parameter or -1')
         if self.output is None or not isinstance(self.output, IOBase):
             self.__error_print('invalid output source')
@@ -127,6 +127,11 @@ def main():
                 word_deque = filter(lambda w: reg_filter(w) and param.min < len(w) < param.max, word_deque)
 
     word_list = list(word_deque)
+
+    print('with {:,d} off {:,d} words has possible {:,d} combinations'.format(
+        param.count, len(word_list), pow(len(word_list), param.count)
+    ))
+    print()
 
     for _ in range(param.tosses):
         words = [choice(word_list).strip() for _ in range(param.count)]
