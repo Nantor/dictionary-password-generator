@@ -1,6 +1,6 @@
 # Dictonary passwort generator
 
-`
+```
 usage: wordlist.py [-h] [-b] [-c COUNT] [-f] [-g MAX] [-l MIN] [-n]
                    [-o OUTPUT] [-p PATH] [-r REGEX] [-s SEPARATOR] [-t TOSSES]
                    DIC
@@ -44,4 +44,4 @@ en-GB.dic to generate a password. You type for the DIC parameter "en-GB". This
 also applies to a corresponding word list file (.wrd). If both types exist, a
 word list file (DIC.wrd) and dictionary files (DIC.aff, DIC.dic), the word
 file will be used.
-`
+```
