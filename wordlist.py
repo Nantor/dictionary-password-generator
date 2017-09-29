@@ -17,6 +17,7 @@ from hunspell import dictionary
 class __Param:
     def __init__(self, error_print: callable):
         self.__error_print = error_print
+        self.basic = False
         self.count = 4
         self.force = False
         self.max = -1
@@ -94,7 +95,7 @@ def main():
     wrd_exist = path.exists(param.wrd) and path.isfile(param.wrd)
 
     if param.force or not wrd_exist:
-        word_deque = dictionary.word_list(param.aff, param.dic)
+        word_deque = dictionary.word_list(param.aff, param.dic, param.basic)
         with open(param.wrd, 'w') as wrd_file:
             wrd_file.write(os.linesep.join(word_deque))
     else:
@@ -148,6 +149,10 @@ def parse_args() -> (callable, __Param):
                ' the DIC parameter "en-GB". This also applies to a corresponding word list file (.wrd). If both types'
                ' exist, a word list file (DIC.wrd) and dictionary files (DIC.aff, DIC.dic), the word file will be used.'
     )
+
+    parser.add_argument('-b', '--basic',
+                        action='store_true',
+                        help='use only the base words, without any affixes')
     parser.add_argument('-c', '--count',
                         type=int,
                         help='number of words in the passwords, default is 4')
